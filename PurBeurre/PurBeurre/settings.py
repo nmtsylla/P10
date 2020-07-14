@@ -27,10 +27,8 @@ SECRET_KEY = "3u2!k9u@no&)*3iem^bkft^5bfa)od*l&$m(kl0lnmaedzz=(q"
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
-    print("DEBUG = FALSE")
 else:
     DEBUG = True
-    print("DEBUG = TRUE")
 
 ALLOWED_HOSTS = ['beurrepur.herokuapp.com']
 
@@ -45,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -59,11 +58,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "PurBeurre.urls"
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["templates"],
+        "DIRS": [os.path.join(BASE_DIR + "/foodfacts", "templates"),
+                 os.path.join(BASE_DIR + "/roles", "templates"),
+                 os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -76,7 +76,9 @@ TEMPLATES = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = ["roles.EmailBackend.EmailBackend"]
+AUTHENTICATION_BACKENDS = [
+    "roles.EmailBackend.EmailBackend",
+    "django.contrib.auth.backends.AllowAllUsersModelBackend"]
 
 WSGI_APPLICATION = "PurBeurre.wsgi.application"
 
