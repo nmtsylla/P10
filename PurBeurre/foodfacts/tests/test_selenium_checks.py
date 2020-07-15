@@ -13,7 +13,12 @@ class MySeleniumTests(StaticLiveServerTestCase):
     """
     options = webdriver.ChromeOptions()
     options.add_argument("--disable-extensions")
+    options.add_argument('--headless')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--no-sandbox')
     driver = webdriver.Chrome(options=options)
+    
+    
     driver.implicitly_wait(30000)
 
     def test_browser(self):
