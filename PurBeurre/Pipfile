@@ -25,7 +25,7 @@ dj-database-url = "*"
 whitenoise = "*"
 pip = "*"
 pytest-cov = "*"
+psycopg2 = "*"
+supervisor = "*"
 django-crispy-forms = "*"
 
-[requires]
-python_version = "3.7"
